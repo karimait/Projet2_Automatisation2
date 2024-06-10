@@ -5,9 +5,9 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features")
-//@IncludeTags("authentifiationValideRemeberMe")
-@IncludeTags("REQ_POEC24P2G3-61")
+@SelectClasspathResource("features/ajoutPanier")
+@IncludeTags("TNR_GR_3")
+
 
 public class TestRunner {
 }

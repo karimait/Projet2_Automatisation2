@@ -1,6 +1,5 @@
 package DetailsArticles;
 
-import authentification.AuthentificationPageObject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,24 +27,16 @@ public class InformationsArticlesStepDef {
         PageFactory.initElements(driver, detailsarticles);
     }
 
-
-
-
-
     @Given("Je suis sur la page d'accueil du site web {string}")
     public void je_suis_sur_la_page_d_accueil_du_site_web(String url) {
-
         driver.navigate().to(url);
         driver.manage().window().maximize();
-        this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.CONSENT_XPATH)));
-        this.detailsarticles.consent();
-
     }
 
     @When("je clique sur le bouton Consent")
     public void je_clique_sur_le_bouton_consent() {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.CONSENT_XPATH)));
-        this.detailsarticles.account();
+        this.detailsarticles.consent();
     }
 
     @When("Je clique sur le lien My Account")
@@ -58,7 +49,6 @@ public class InformationsArticlesStepDef {
     public void je_saisis_mon_adresse_email_valide(String email) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.USERNAME_XPATH)));
         this.detailsarticles.username(email);
-
     }
 
     @When("Je saisis mon mot de passe correct {string}")
@@ -67,14 +57,15 @@ public class InformationsArticlesStepDef {
         this.detailsarticles.password(password);
     }
 
+
     @When("Je clique sur le bouton LOGIN")
     public void je_clique_sur_le_bouton_login() {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.LOGIN_XPATH)));
         this.detailsarticles.login();
     }
 
-    @Then("Je suis redirigé vers la page {string}")
-    public void je_suis_redirigé_vers_la_page(String string) {
+    @Then("Je suis redirigé vers la page Dashboard")
+    public void jeSuisRedirigéVersLaPageDashboard(){
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.ITEMS_XPATH)));
         ArrayList<String> nav = this.detailsarticles.getNavigation();
         String []dashboard = new String[]{ "Dashboard", "Orders", "Downloads" ,"Addresses", "Account Details" , "Logout" };
@@ -86,7 +77,7 @@ public class InformationsArticlesStepDef {
     @Then("Je clique sur le bouton Shop")
     public void je_clique_sur_le_bouton_shop() {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(InformationsArticlesPageObject.SHOP_XPATH)));
-        this.detailsarticles.login();
+        this.detailsarticles.clickShop();
     }
 
     @Then("je clique sur l'article de mon choix")
@@ -99,9 +90,5 @@ public class InformationsArticlesStepDef {
     public void l_utilisateur_voit_la_photographie_un_détail_descriptif_le_prix_et_le_nombre_d_exemplaires_encore_disponibles_du_produit() {
 
     }
-
-
-
-
 
 }
